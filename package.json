@@ -1,0 +1,14 @@
+{
+  "name": "realtimeactivemq",
+  "version": "1.0.0",
+  "description": "Testing apache active mq with websockets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "stompjs": "^2.3.3"
+  }
+}
