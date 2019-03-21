@@ -1,17 +1,12 @@
 var Stomp = require('stompjs');
-
-var client  = Stomp.overTCP('127.0.0.1', 61613);
-
-var username = "";
-var password = ""; 
+var config = require('./config.js');
+var client  = Stomp.overTCP(config.host, config.port);
 
 client.connect(
-    username,
-    password,
-    function() {
-        
-        client.subscribe("/queue/REGIE",
-
+    config.username,
+    config.password,
+    function() {        
+        client.subscribe(config.queue,
             (message) => {
 
                 if (message.body) {
@@ -22,11 +17,10 @@ client.connect(
                     console.log("Got empty message");
                 }
 
-            },
-
-            { priority: 9 }
+            }, { 
+                priority: 9 
+            }
 
         );
-        //client.send("/queue/Regie", { priority: 9 }, "Hello, STOMP");
     },
 );
