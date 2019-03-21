@@ -4,16 +4,16 @@ Application Node.js pour traitement des messages de apache activemq en temps ré
 
 Prérequis: Node LTS - Version 10.15.5 +
 
-##Setup
+## Setup
 ```
 npm install
 ```
 
-##Configuration
+## Configuration
 
 Tous les configurations sont dans le fichier config.js ( host, port, username, password, queue )
 
-##Lancer le service
+## Lancer le service
 ```
 node index.js
 ```
