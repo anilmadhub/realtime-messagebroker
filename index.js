@@ -1,26 +1,37 @@
-var Stomp = require('stompjs');
-var config = require('./config.js');
-var client  = Stomp.overTCP(config.host, config.port);
+const Stomp = require('stompjs');
+const config = require('./config.js');
+const client  = Stomp.overTCP(config.host, config.port);
+const axios = require('axios');
 
 client.connect(
     config.username,
     config.password,
-    function() {        
+    () => {      
         client.subscribe(config.queue,
             (message) => {
 
                 if (message.body) {
-                    // A developper un endpoint API pour le message avant de le consommer
-                    console.log("Got message with body: " + message)
-                    message.ack();
+                    processMessages(message);
                 } else {
                     console.log("Got empty message");
                 }
 
-            }, { 
-                priority: 9 
-            }
-
+            }, 
+            { priority: 9  }
         );
     },
 );
+
+
+function processMessages(message) {
+
+    axios.post(config.url, {
+        message: message
+    }).then(response => {
+        console.log("Ajax reponse:", { response });
+        message.ack();
+
+    }).catch(error => {
+        console.log(error)
+    })
+}

@@ -10,5 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "stompjs": "^2.3.3"
+  },
+  "dependencies": {
+    "axios": "^0.18.0"
   }
 }
