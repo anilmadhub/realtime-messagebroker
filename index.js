@@ -11,11 +11,10 @@ client.connect(
             (message) => {
 
                 if (message.body) {
-                    processMessages(message);
+                    processMessages(config.url, message);
                 } else {
                     console.log("Got empty message");
                 }
-
             }, 
             { priority: 9  }
         );
@@ -23,12 +22,12 @@ client.connect(
 );
 
 
-function processMessages(message) {
+function processMessages(url, message) {
 
-    axios.post(config.url, {
+    axios.post(url, {
         message: message
     }).then(response => {
-        console.log("Ajax reponse:", { response });
+        console.log("Ajax reponse:", response.data );
         message.ack();
 
     }).catch(error => {
