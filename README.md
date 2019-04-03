@@ -1,19 +1,38 @@
 # Realtime AMQ via stompjs
 
-Application Node.js pour traitement des messages de apache activemq en temps réel via websocket
+Simple Node.js App to listen and process & acknowledge queue messages in real time
 
-Prérequis: Node LTS - Version 10.15.5 +
+Requirement: Node LTS - Version 10.15.5 +
 
 ## Setup
+
+Clone and install all the depencencies
 ```
 npm install
 ```
 
 ## Configuration
 
-Tous les configurations sont dans le fichier config.js ( host, port, username, password, queue )
+All the configuration is done in **config.js** ( host, port, username, password, queue )
 
-## Lancer le service
+## Options
+The message can be processed directly in **client.subscribe()** or through an API endpoint using Axios.js in **processMessages()**.
+
+## Running the script
 ```
 node index.js
+```
+
+An alternate way to run the script is to use the **forever** command
+
+## Using Forever
+Installation:
+```
+npm install -g forever
+```
+
+Command:
+
+```
+forever start index.js
 ```
